@@ -19,3 +19,15 @@ Enum은 Enum안에 정의되고 Model.Enum 네임스페이스를 가집니다.
 
 Model은 기본적으로 Model 네임스페이스를 가집니다.
 structure로 정의하는 것을 기본으로 합니다.
+
+# Core
+
+depends on Model
+
+# Console
+
+depends on Model, Core
+
+# Tool
+
+depends on Model
