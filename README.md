@@ -1,6 +1,8 @@
 
 # Model 
 
+.netstandard 2.1
+
 데이터 모델, 상수 같은 서버/클라이언트가 공용으로 사용할 데이터가 포함됩니다.
 
 ## Const
@@ -24,11 +26,15 @@ structure로 정의하는 것을 기본으로 합니다.
 
 # Core
 
+.netstandard 2.1
+
 Model 프로젝트를 참조합니다.
 
 게임 로직이 구현됩니다.
 
 # Console
+
+.net 8.0 (console)
 
 Model, Core 프로젝트를 참조합니다.
 
@@ -37,6 +43,8 @@ Model, Core 프로젝트를 참조합니다.
 추후 스트레스트 테스트와 시뮬레이션 검증 기능이 추가됩니다.
 
 # Tool
+
+.net 8.0 (console)
 
 Model 프로젝트를 참조합니다.
 
