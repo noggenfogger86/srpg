@@ -3,33 +3,39 @@ using Model.Const;
 
 namespace Core.Helpers
 {
-    public static class Action
+    public static partial class Action
     {
         // AP 소모 로직
-        public static void ConsumeAP(ref FieldCharacter fieldCharacter, int ap)
+        private static void ConsumeAP(ref FieldCharacter actor, int ap)
         {
-            fieldCharacter.CurrentAP -= ap;
-            fieldCharacter.AccumulatedAP += ap;
+            actor.CurrentAP -= ap;
+            actor.TurnPoint += ap;
         }
 
         // 턴 종료 시 AP 소모 처리
-        public static void EndTurn(ref FieldCharacter fieldCharacter)
+        public static void EndTurn(ref FieldCharacter actor)
         {
             // 이동 포인트 처리
-            ConsumeAP(ref fieldCharacter, Model.Const.Action.AP_END_TURN);
+            ConsumeAP(ref actor, Model.Const.Action.AP_END_TURN);
         }
 
         // 공격 처리
-        public static void Attack(ref FieldCharacter fieldCharacter)
+        public static void Consume(ref FieldCharacter actor, int spellId = 0)
         {
-            ConsumeAP(ref fieldCharacter, Model.Const.Action.AP_ATTACK);
+            int cost = Model.Const.Action.AP_ATTACK; //spellId == 0 ? Model.Const.Action.AP_ATTACK : cost;
+            ConsumeAP(ref actor, cost);
         }
 
         // 방어 모드 전환 처리
-        public static void Defend(ref FieldCharacter fieldCharacter)
+        public static void Defend(ref FieldCharacter actor)
         {
-            ConsumeAP(ref fieldCharacter, Model.Const.Action.AP_DEFENSE);
+            ConsumeAP(ref actor, Model.Const.Action.AP_DEFENSE);
+        }
+
+        public static void Initialize(ref FieldCharacter actor)
+        {
+            var character = actor.Character;
+            actor.CurrentAP = (character.Str + character.Agi + character.Int) / 5;
         }
     }
-
 }

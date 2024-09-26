@@ -45,7 +45,7 @@ namespace Model
         // 장착 아이템 정보. ItemSlot Enum 참조
         public Item[] Equip;
 
-        public Character(string id, string name, CharacterClass classType, int lv, int exp)
+        public Character(string id, string name, CharacterClass classType, int lv, int exp = 0)
         {
             Id = id;
             Name = name;
@@ -70,6 +70,58 @@ namespace Model
             EffectRes = new int[EnumCount.EffectCount];
             EffectStatus = new EffectStatus[EnumCount.EffectCount];
             Equip = new Item[EnumCount.ItemSlotCount];
+        }
+
+        public static void Print(Character character)
+        {
+            System.Console.WriteLine("====== Character Info ======");
+            System.Console.WriteLine($"ID: {character.Id}");
+            System.Console.WriteLine($"Name: {character.Name}");
+            System.Console.WriteLine($"Class: {character.ClassType}");
+            System.Console.WriteLine($"Level: {character.Lv}");
+            System.Console.WriteLine($"Exp: {character.Exp}");
+
+            // 1차 스탯 출력
+            System.Console.WriteLine("------ Primary Stats ------");
+            System.Console.WriteLine($"Str: {character.Str}");
+            System.Console.WriteLine($"Agi: {character.Agi}");
+            System.Console.WriteLine($"Vit: {character.Vit}");
+            System.Console.WriteLine($"Int: {character.Int}");
+            System.Console.WriteLine($"Lck: {character.Lck}");
+
+            // 2차 스탯 출력
+            System.Console.WriteLine("------ Secondary Stats ------");
+            System.Console.WriteLine($"HP: {character.Hp}");
+            System.Console.WriteLine($"MP: {character.Mp}");
+            System.Console.WriteLine($"Atk: {character.Atk}");
+            System.Console.WriteLine($"Def: {character.Def}");
+            System.Console.WriteLine($"Dodge: {character.Dodge}");
+
+            System.Console.WriteLine("------ Elemental Status ------");
+            for (int i = 0; i < character.ElementalStatus.Length; i++)
+            {
+                System.Console.WriteLine($"Element {((Model.Enum.Elemental)i).ToString()}: Attack Power: {character.ElementalStatus[i].Atk}, Resistance: {character.ElementalStatus[i].Res}, Dodge: {character.ElementalStatus[i].Dodge}");
+            }
+
+            System.Console.WriteLine("------ Effect Resistances ------");
+            for (int i = 0; i < character.EffectRes.Length; i++)
+            {
+                System.Console.WriteLine($"Effect {((Model.Enum.Effect)i).ToString()} Resistance: {character.EffectRes[i]}");
+            }
+
+            System.Console.WriteLine("------ Effect Status ------");
+            for (int i = 0; i < character.EffectStatus.Length; i++)
+            {
+                System.Console.WriteLine($"Effect {((Model.Enum.Effect)i).ToString()}: Level: {character.EffectStatus[i].Lv}, Duration: {character.EffectStatus[i].Duration}");
+            }
+
+            System.Console.WriteLine("------ Equipment ------");
+            for (int i = 0; i < character.Equip.Length; i++)
+            {
+                System.Console.WriteLine($"Equipment {((Model.Enum.ItemSlot)i).ToString()}: {character.Equip[i].Id}");  // assuming Item has a Name property
+            }
+
+            System.Console.WriteLine("===============================");
         }
     }
 }

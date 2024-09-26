@@ -155,7 +155,14 @@ namespace Console.Tool
             {
                 for (int y = 0; y < height; y++)
                 {
-                    System.Console.Write(TerrainToSymbol(field[x, y].Terrain));
+                    if (field[x, y].IsOccupied && field[x, y].Occupant.HasValue)
+                    {
+                        System.Console.Write(CharacterSymbol(field[x, y].Occupant.Value));
+                    }
+                    else
+                    {
+                        System.Console.Write(TerrainToSymbol(field[x, y].Terrain));
+                    }
                 }
                 System.Console.WriteLine();  // 줄바꿈
             }
@@ -172,6 +179,12 @@ namespace Console.Tool
                 Model.Enum.Terrain.Mountain => "[^]",
                 _ => "[ ]",  // 기본적으로 Plain
             };
+        }
+
+        // 직업명 첫글자
+        private static string CharacterSymbol(FieldCharacter fieldCharacter)
+        {
+            return $"[{fieldCharacter.Character.ClassType.ToString()[..1].ToLower()}]";
         }
     }
 }

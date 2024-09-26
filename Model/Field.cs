@@ -11,18 +11,25 @@ namespace Model
         public int Height;  // 필드의 세로 크기 (Y축)
         public Cell[,] Cells;  // 셀 배열
 
-        public Field(int width, int height)
+        public Field(int width, int height, Cell[,] cells = null)
         {
             Width = width;
             Height = height;
-            Cells = new Cell[width, height];  // 셀 배열 초기화
-
-            // 각 셀에 대해 기본적으로 초기화
-            for (int x = 0; x < width; x++)
+            if (cells != null)
             {
-                for (int y = 0; y < height; y++)
+                Cells = cells;
+            }
+            else
+            {
+                Cells = new Cell[width, height];  // 셀 배열 초기화
+
+                // 각 셀에 대해 기본적으로 초기화
+                for (int x = 0; x < width; x++)
                 {
-                    Cells[x, y] = new Cell(x, y, Terrain.Plain);  // 기본적으로 평지로 설정
+                    for (int y = 0; y < height; y++)
+                    {
+                        Cells[x, y] = new Cell(x, y, Terrain.Plain);  // 기본적으로 평지로 설정
+                    }
                 }
             }
         }

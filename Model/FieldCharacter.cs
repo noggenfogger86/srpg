@@ -5,7 +5,8 @@ using Model.Enum;
 
 namespace Model
 {
-    public struct FieldCharacter {
+    public struct FieldCharacter
+    {
         public Character Character;  // 캐릭터 정보
 
         public long UserId;  // 플레이어 캐릭터인지 여부
@@ -19,13 +20,15 @@ namespace Model
 
         // 행동력 관련
         public int CurrentAP;   // 현재 남아있는 행동력
-        public int AccumulatedAP;  // 누적 행동력 (다음 행동 순서에 영향을 줌)
+        public int TurnPoint;  // 누적 행동력 (다음 행동 순서에 영향을 줌)
 
         // 이동력 관련
         public int MoveAP;      // 이동력
         public int MaxMoveAP;   // 최대 이동력
 
-        public FieldCharacter(Character character, int x, int y, int z = 0, long userId = 0)
+        public bool IsDead; // 캐릭터 사망 여부
+
+        public FieldCharacter(Character character, int x, int y, int z = 0, long userId = 0, bool isDead = false)
         {
             Character = character;
             X = x;
@@ -34,11 +37,30 @@ namespace Model
             UserId = userId;
 
             CurrentAP = 0;  // 기본값으로 설정
-            AccumulatedAP = 0;  // 기본값으로 설정
+            TurnPoint = 0;  // 기본값으로 설정
 
             // 이동 포인트 초기화
             MaxMoveAP = 0;
             MoveAP = 0;
+
+            IsDead = isDead;
+        }
+
+        public static void Print(FieldCharacter fieldCharacter)
+        {
+            Console.WriteLine("=== Field Character Info ===");
+            Console.WriteLine($"Position: X = {fieldCharacter.X}, Y = {fieldCharacter.Y}, Z = {fieldCharacter.Z}");
+            Console.WriteLine($"User ID: {fieldCharacter.UserId}");
+            Console.WriteLine(fieldCharacter.IsPlayer ? "This is a player-controlled character." : "This is an NPC character.");
+
+            Console.WriteLine($"Current AP: {fieldCharacter.CurrentAP}");
+            Console.WriteLine($"TurnPoint: {fieldCharacter.TurnPoint}");
+
+            Console.WriteLine($"Move AP: {fieldCharacter.MoveAP}");
+            Console.WriteLine($"Max Move AP: {fieldCharacter.MaxMoveAP}");
+
+            // Character의 Print 함수 호출
+            Model.Character.Print(fieldCharacter.Character);
         }
     }
 }

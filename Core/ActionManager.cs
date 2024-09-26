@@ -9,7 +9,7 @@ namespace Core
         public static void ConsumeAP(ref FieldCharacter fieldCharacter, int ap)
         {
             fieldCharacter.CurrentAP -= ap;
-            fieldCharacter.AccumulatedAP += ap;
+            fieldCharacter.TurnPoint += ap;
         }
 
         // 턴 종료 처리

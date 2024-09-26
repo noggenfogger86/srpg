@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Console": {
+      "commandName": "Project",
+      "commandLineArgs": "--run C:\\Users\\noggen86\\source\\repos\\srpg"
+    }
+  }
+}
