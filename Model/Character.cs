@@ -12,7 +12,7 @@ namespace Model
         public static readonly int ItemSlotCount = System.Enum.GetValues(typeof(ItemSlot)).Length;
     }
     
-    public struct Character
+    public class Character
     {
         public string Id;   // 고유코드 (외형)
         public string Name; // 이름

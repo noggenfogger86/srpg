@@ -5,7 +5,7 @@ using Model.Enum;
 
 namespace Model
 {
-    public struct FieldCharacter
+    public class FieldCharacter
     {
         public Character Character;  // 캐릭터 정보
 
@@ -16,7 +16,7 @@ namespace Model
         public int Y;  // 전후 좌표
         public int Z;  // 높이 좌표
 
-        public readonly bool IsPlayer => UserId != 0;  // 플레이어 캐릭터인지 여부
+        public bool IsPlayer => UserId != 0;  // 플레이어 캐릭터인지 여부
 
         // 행동력 관련
         public int CurrentAP;   // 현재 남아있는 행동력
@@ -27,6 +27,11 @@ namespace Model
         public int MaxMoveAP;   // 최대 이동력
 
         public bool IsDead; // 캐릭터 사망 여부
+
+        public FieldCharacter()
+        {
+
+        }
 
         public FieldCharacter(Character character, int x, int y, int z = 0, long userId = 0, bool isDead = false)
         {

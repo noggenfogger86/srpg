@@ -10,13 +10,13 @@ namespace Core
     public static class BehaviorTree
     {
         // 캐릭터의 행동 트리 처리
-        public static void ExecuteTurn(FieldCharacter character, Cell[,] field, Model.Enum.RangeType rangeType, int range)
+        public static void ExecuteTurn(ref FieldCharacter character, ref Cell[,] field, Model.Enum.RangeType rangeType, int range)
         {
             range = 10;
             // 1. 적 캐릭터 인식
             (int x, int y) = Core.Helpers.Action.Attack.Search(character, field, rangeType, range);
             
-            if (x < 0 || y < 0 || !field[x, y].Occupant.HasValue)
+            if (x < 0 || y < 0 || field[x, y].Occupant == null)
             {
                 return;
             }
@@ -56,6 +56,8 @@ namespace Core
             {
                 Console.WriteLine($"{character.Character.Name} has no available moves.");
             }
+
+            field[x, y].Occupant = nearestEnemy;
         }
 
         // 적과의 거리 계산

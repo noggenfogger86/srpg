@@ -7,8 +7,8 @@ namespace Core
     public class Battle
     {
         // 팀 목록, UserId를 키로 사용
-        public Dictionary<long, Team> TeamList { get; set; }
-        public Field Field { get; set; }
+        public Dictionary<long, Team> TeamList;
+        public Field Field;
 
         // 생성자
         public Battle()

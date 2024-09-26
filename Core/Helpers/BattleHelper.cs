@@ -18,16 +18,19 @@ namespace Core.Helpers
 
             // 전투가 끝날 때까지 반복
             int i = 0;
-            while (!battle.IsBattleEnd() && i++ < 100)  // 최대 100 턴 
+            while (!battle.IsBattleEnd() && i++ < 20)  // 최대 100 턴 
             {
                 // 각 팀의 턴을 진행
                 foreach (var team in battle.TeamList.Values)
                 {
                     System.Console.WriteLine($"Team {team.TeamId}'s turn.");
                     // 살아있는 캐릭터들의 턴을 진행
-                    foreach (var character in team.Alive)
+                    for (int j = 0; j < team.Alive.Count; j++)
                     {
-                        BehaviorTree.ExecuteTurn(character, battle.Field.Cells, Model.Enum.RangeType.FourDirections, 1);
+                        var character = team.Alive[j];
+                        var cells = battle.Field.Cells;
+                        BehaviorTree.ExecuteTurn(ref character, ref cells, Model.Enum.RangeType.FourDirections, 1);
+                        battle.Field.Cells = cells;
                         System.Console.WriteLine($"Character {character.Character.Name}'s turn.");
                     }
                 }

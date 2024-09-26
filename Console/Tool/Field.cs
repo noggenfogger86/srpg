@@ -155,9 +155,9 @@ namespace Console.Tool
             {
                 for (int y = 0; y < height; y++)
                 {
-                    if (field[x, y].IsOccupied && field[x, y].Occupant.HasValue)
+                    if (field[x, y].IsOccupied && field[x, y].Occupant != null)
                     {
-                        System.Console.Write(CharacterSymbol(field[x, y].Occupant.Value));
+                        System.Console.Write(CharacterSymbol(field[x, y].Occupant));
                     }
                     else
                     {

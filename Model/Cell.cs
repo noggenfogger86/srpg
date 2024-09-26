@@ -11,7 +11,7 @@ namespace Model
         public int Y;  // Y 좌표
         public int Z;  // 높이 정보 (선택적)
         public Terrain Terrain;  // 지형 타입 (Enum 사용)
-        public FieldCharacter? Occupant;  // 셀에 있는 캐릭터 (없을 경우 기본값 사용)
+        public FieldCharacter Occupant;  // 셀에 있는 캐릭터 (없을 경우 기본값 사용)
         public bool IsOccupied;  // 캐릭터나 장애물이 있는지 여부
         public Item[] Item;  // 아이템 또는 오브젝트
 

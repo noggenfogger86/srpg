@@ -22,7 +22,8 @@ namespace Core
             cells[5, 6].Occupant = target;
 
             // 턴 실행
-            BehaviorTree.ExecuteTurn(attacker, cells, RangeType.FourDirections, 1);
+            BehaviorTree.ExecuteTurn(ref attacker, ref cells, RangeType.FourDirections, 1);
+            cells[5, 5].Occupant = attacker;
 
             // // 적 캐릭터 탐색
             // var (x, y) = Core.Helpers.Action.Attack.Search(attacker, cells, RangeType.FourDirections, 3);

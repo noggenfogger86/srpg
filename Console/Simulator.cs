@@ -15,7 +15,7 @@ namespace Console
                 // 캐릭터 배치
                 foreach(var character in kv.Value)
                 {
-                    FieldCharacter fieldCharacter = new ();
+                    FieldCharacter fieldCharacter = new FieldCharacter();
                     RandomPlaceCharacter(team.TeamId, character, ref field, ref fieldCharacter);
                     Core.Helpers.Action.Initialize(ref fieldCharacter);
                     Core.Helpers.Move.Initialize(ref fieldCharacter);
