@@ -7,10 +7,14 @@ namespace Model
 {
     public struct FieldCharacter {
         public Character Character;  // 캐릭터 정보
-        public int X;  // X 좌표
-        public int Y;  // Y 좌표
-        public int Z;  // 높이 정보 (선택적)
+
         public long UserId;  // 플레이어 캐릭터인지 여부
+
+        // 좌표 관련 ; 유니티 좌표계를 따름
+        public int X;  // 가로 좌표
+        public int Y;  // 전후 좌표
+        public int Z;  // 높이 좌표
+
         public readonly bool IsPlayer => UserId != 0;  // 플레이어 캐릭터인지 여부
 
         // 행동력 관련
@@ -38,3 +42,18 @@ namespace Model
         }
     }
 }
+
+/*
+Unity3D의 좌표계에 맵핑하기위해 아래의 함수들을 사용합니다.
+public static Vector3 ToUnity(int x, int y, int z)
+{
+    // 코어의 X는 Unity의 X, 코어의 Z는 Unity의 Y, 코어의 Y는 Unity의 Z
+    return new Vector3(x, z, y);
+}
+
+public static (int x, int y, int z) ToGrid(Vector3 pos)
+{
+    // Unity의 X는 코어의 X, Unity의 Z는 코어의 Y, Unity의 Y는 코어의 Z
+    return ((int)pos.x, (int)pos.z, (int)pos.y);
+}
+*/

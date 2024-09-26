@@ -16,6 +16,7 @@ namespace Model
     {
         public string Id;   // 고유코드 (외형)
         public string Name; // 이름
+        public CharacterClass ClassType;    // 직업
         public int Lv;      // 레벨
         public int Exp;     // 경험치
 
@@ -44,10 +45,11 @@ namespace Model
         // 장착 아이템 정보. ItemSlot Enum 참조
         public Item[] Equip;
 
-        public Character(string id, string name, int lv, int exp)
+        public Character(string id, string name, CharacterClass classType, int lv, int exp)
         {
             Id = id;
             Name = name;
+            ClassType = classType;
             Lv = lv;
             Exp = exp;
 

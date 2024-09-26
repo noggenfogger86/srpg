@@ -11,7 +11,7 @@ namespace Core.Helpers
         // 이동 가능한 셀 출력
         foreach (var cell in movableCells)
         {
-            Console.WriteLine($"Movable Cell: ({cell.X}, {cell.Y})");
+            System.Console.WriteLine($"Movable Cell: ({cell.X}, {cell.Y})");
         }
 
         // 턴 종료 시 이동 포인트 처리

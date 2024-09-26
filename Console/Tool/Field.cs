@@ -1,11 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
-using Model;
-namespace Tool
+﻿using Model;
+
+namespace Console.Tool
 {
-    public static class FieldGenerator
+    public static class Field
     {
         // 필드를 생성하는 함수
-        public static Cell[,] GenerateField(int width, int height, float mountainRatio, float waterRatio, float forestRatio, float swampRatio)
+        public static Cell[,] Generate(int width, int height, float mountainRatio, float waterRatio, float forestRatio, float swampRatio)
         {
             var field = new Cell[width, height];
             var random = new Random();
@@ -112,7 +112,7 @@ namespace Tool
                 }
             }
 
-            Console.WriteLine($"Field saved to {filename}");
+            System.Console.WriteLine($"Field saved to {filename}");
 
             return filename;
         }
@@ -121,7 +121,7 @@ namespace Tool
         {
             if (!File.Exists(filename))
             {
-                Console.WriteLine("File not found!");
+                System.Console.WriteLine("File not found!");
                 return new Cell[0, 0];
             }
 
@@ -146,7 +146,7 @@ namespace Tool
         }
 
         // 필드를 2차원 배열 형태로 출력하는 함수
-        public static void PrintField(Cell[,] field)
+        public static void Print(Cell[,] field)
         {
             int width = field.GetLength(0);
             int height = field.GetLength(1);
@@ -155,9 +155,9 @@ namespace Tool
             {
                 for (int y = 0; y < height; y++)
                 {
-                    Console.Write(TerrainToSymbol(field[x, y].Terrain));
+                    System.Console.Write(TerrainToSymbol(field[x, y].Terrain));
                 }
-                Console.WriteLine();  // 줄바꿈
+                System.Console.WriteLine();  // 줄바꿈
             }
         }
 
