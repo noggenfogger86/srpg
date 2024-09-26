@@ -21,20 +21,23 @@ namespace Core
             cells[5, 6].IsOccupied = true;
             cells[5, 6].Occupant = target;
 
-            // 적 캐릭터 탐색
-            var (x, y) = Core.Helpers.Action.Attack.Search(attacker, cells, RangeType.FourDirections, 3);
-            if (x < 0 && y < 0)
-            {
-                Console.WriteLine("No enemies found nearby.");
-            }
-            else
-            {
-                FieldCharacter enemy = cells[x, y].Occupant ?? new FieldCharacter();
-                // 공격 실행
-                Core.Helpers.Action.Consume(ref attacker);
-                Core.Helpers.Action.Attack.Normal(ref attacker, ref enemy);
-                cells[x, y].Occupant = enemy;
-            }
+            // 턴 실행
+            BehaviorTree.ExecuteTurn(attacker, cells, RangeType.FourDirections, 1);
+
+            // // 적 캐릭터 탐색
+            // var (x, y) = Core.Helpers.Action.Attack.Search(attacker, cells, RangeType.FourDirections, 3);
+            // if (x < 0 && y < 0)
+            // {
+            //     Console.WriteLine("No enemies found nearby.");
+            // }
+            // else
+            // {
+            //     FieldCharacter enemy = cells[x, y].Occupant ?? new FieldCharacter();
+            //     // 공격 실행
+            //     Core.Helpers.Action.Consume(ref attacker);
+            //     Core.Helpers.Action.Attack.Normal(ref attacker, ref enemy);
+            //     cells[x, y].Occupant = enemy;
+            // }
         }
     }
 }

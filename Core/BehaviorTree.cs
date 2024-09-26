@@ -12,10 +12,11 @@ namespace Core
         // 캐릭터의 행동 트리 처리
         public static void ExecuteTurn(FieldCharacter character, Cell[,] field, Model.Enum.RangeType rangeType, int range)
         {
+            range = 10;
             // 1. 적 캐릭터 인식
             (int x, int y) = Core.Helpers.Action.Attack.Search(character, field, rangeType, range);
             
-            if (!field[x, y].Occupant.HasValue)
+            if (x < 0 || y < 0 || !field[x, y].Occupant.HasValue)
             {
                 return;
             }
